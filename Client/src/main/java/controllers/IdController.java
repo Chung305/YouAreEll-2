@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import models.Id;
 
-public class IdController {
+final public class IdController {
     Id myId;
+    private static IdController INSTANCE = new IdController();
+
+    private IdController(){
+    }
 
     public ArrayList<Id> getIds() {
         return null;
@@ -18,5 +22,9 @@ public class IdController {
     public Id putId(Id id) {
         return null;
     }
+
+    public static IdController getInstance(){ return INSTANCE;}
+
+
  
 }

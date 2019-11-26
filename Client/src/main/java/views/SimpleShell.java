@@ -9,6 +9,7 @@ import java.util.List;
 
 import controllers.IdController;
 import controllers.MessageController;
+import controllers.TransactionController;
 import youareell.YouAreEll;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
@@ -20,6 +21,8 @@ public class SimpleShell {
         System.out.println(output);
     }
     public static void main(String[] args) throws java.io.IOException {
+
+        TransactionController con = new TransactionController();
 
         YouAreEll webber = new YouAreEll(new MessageController(), new IdController());
         
