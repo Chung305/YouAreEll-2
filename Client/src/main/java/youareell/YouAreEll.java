@@ -15,7 +15,7 @@ public class YouAreEll {
 
     public static void main(String[] args) {
         // hmm: is this Dependency Injection?
-        YouAreEll urlhandler = new YouAreEll(new MessageController(), new IdController());
+        YouAreEll urlhandler = new YouAreEll(new MessageController(), IdController.getInstance());
         System.out.println(urlhandler.MakeURLCall("/ids", "GET", ""));
         System.out.println(urlhandler.MakeURLCall("/messages", "GET", ""));
     }

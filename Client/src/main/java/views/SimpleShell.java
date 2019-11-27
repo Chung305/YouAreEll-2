@@ -10,6 +10,7 @@ import java.util.List;
 import controllers.IdController;
 import controllers.MessageController;
 import controllers.TransactionController;
+import models.Id;
 import youareell.YouAreEll;
 
 // Simple Shell is a Console view for youareell.YouAreEll.
@@ -18,13 +19,11 @@ public class SimpleShell {
 
     public static void prettyPrint(String output) {
         // yep, make an effort to format things nicely, eh?
-        System.out.println(output);
+        System.out.println(output + "\n");
     }
     public static void main(String[] args) throws java.io.IOException {
 
-        TransactionController con = new TransactionController();
-
-        YouAreEll webber = new YouAreEll(new MessageController(), new IdController());
+        YouAreEll webber = new YouAreEll(new MessageController(), IdController.getInstance());
         
         String commandLine;
         BufferedReader console = new BufferedReader
@@ -70,9 +69,13 @@ public class SimpleShell {
                 // Specific Commands.
 
                 // ids
-                if (list.contains("ids")) {
-                    String results = webber.get_ids();
-                    SimpleShell.prettyPrint(results);
+                if (list.contains("ids") && list.size() == 1) {
+                    SimpleShell.prettyPrint(IdController.getInstance().getIds().toString());
+                    continue;
+                }
+
+                else if(list.contains("ids") && list.size() == 3){
+                    IdController.getInstance().postId(list.get(1), list.get(2));
                     continue;
                 }
 
@@ -82,6 +85,7 @@ public class SimpleShell {
                     SimpleShell.prettyPrint(results);
                     continue;
                 }
+
                 // you need to add a bunch more.
 
                 //!! command returns the last command in history
